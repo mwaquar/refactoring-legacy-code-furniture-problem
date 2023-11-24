@@ -19,7 +19,7 @@ public class Customer {
         return name;
     }
 
-    public String statement() {
+    public String textStatement() {
         String result = "Rental Record for " + getName() + "\n";
         for (Rental each : rentals) {
             //show figures for this rental
@@ -31,6 +31,21 @@ public class Customer {
         result += "Amount owed is " + getTotalAmount() + "\n";
         result += "You earned " + getTotalFrequentRenterPoints()
                 + " frequent renter points";
+        return result;
+    }
+
+    public String htmlStatement() {
+        String result = "<h1>Rental Record for <b>" + getName() + "</b><h1>\n";
+        for (Rental each : rentals) {
+            //show figures for this rental
+            result += "\t<p>" + each.getFurniture().getTitle() + "\t" +
+                    each.getPrice() + "</p><br>\n";
+        }
+
+        //add footer lines result
+        result += "<p>Amount owed is <b>" + getTotalAmount() + "</b></p><br>\n";
+        result += "<p>You earned <b>" + getTotalFrequentRenterPoints()
+                + "</b> frequent renter points</p>";
         return result;
     }
 
