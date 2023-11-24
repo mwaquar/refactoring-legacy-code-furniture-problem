@@ -26,7 +26,7 @@ public class Customer {
         for (Rental each : rentals) {
             double thisAmount = 0;
             //determine amounts for each line
-            thisAmount = amountFor(each);
+            thisAmount = each.getPrice();
             // add frequent renter points
             frequentRenterPoints++;
             // add bonus for a two days new launch rental
@@ -45,10 +45,6 @@ public class Customer {
         result += "You earned " + frequentRenterPoints
                 + " frequent renter points";
         return result;
-    }
-
-    private double amountFor(Rental rental) {
-        return rental.getPrice();
     }
 }
 
