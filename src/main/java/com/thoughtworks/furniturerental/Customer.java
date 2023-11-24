@@ -26,11 +26,7 @@ public class Customer {
         for (Rental each : rentals) {
             //determine amounts for each line
             // add frequent renter points
-            frequentRenterPoints++;
-            // add bonus for a two days new launch rental
-            if ((each.getFurniture().getPriceCode() == Furniture.NEW_LAUNCH)
-                    &&
-                    each.getDaysRented() > 1) frequentRenterPoints++;
+            frequentRenterPoints += each.getFrequentRenterPoints();
 
             //show figures for this rental
             result += "\t" + each.getFurniture().getTitle() + "\t" +

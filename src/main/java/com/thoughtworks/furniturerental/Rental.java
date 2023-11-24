@@ -37,4 +37,12 @@ public class Rental {
         }
         return thisAmount;
     }
+
+    public int getFrequentRenterPoints() {
+        // add bonus for a two days new launch rental
+        if ((getFurniture().getPriceCode() == Furniture.NEW_LAUNCH)
+                &&
+                getDaysRented() > 1) return 2;
+        return 1;
+    }
 }
