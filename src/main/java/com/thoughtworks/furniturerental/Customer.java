@@ -47,24 +47,8 @@ public class Customer {
         return result;
     }
 
-    private static double amountFor(Rental rental) {
-        double thisAmount = 0;
-        switch (rental.getFurniture().getPriceCode()) {
-            case Furniture.REGULAR:
-                thisAmount += 200;
-                if (rental.getDaysRented() > 2)
-                    thisAmount += (rental.getDaysRented() - 2) * 150;
-                break;
-            case Furniture.NEW_LAUNCH:
-                thisAmount += rental.getDaysRented() * 300;
-                break;
-            case Furniture.CHILDREN:
-                thisAmount += 150;
-                if (rental.getDaysRented() > 3)
-                    thisAmount += (rental.getDaysRented() - 3) * 150;
-                break;
-        }
-        return thisAmount;
+    private double amountFor(Rental rental) {
+        return rental.getPrice();
     }
 }
 
