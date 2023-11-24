@@ -26,21 +26,7 @@ public class Customer {
         for (Rental each : rentals) {
             double thisAmount = 0;
             //determine amounts for each line
-            switch (each.getFurniture().getPriceCode()) {
-                case Furniture.REGULAR:
-                    thisAmount += 200;
-                    if (each.getDaysRented() > 2)
-                        thisAmount += (each.getDaysRented() - 2) * 150;
-                    break;
-                case Furniture.NEW_LAUNCH:
-                    thisAmount += each.getDaysRented() * 300;
-                    break;
-                case Furniture.CHILDREN:
-                    thisAmount += 150;
-                    if (each.getDaysRented() > 3)
-                        thisAmount += (each.getDaysRented() - 3) * 150;
-                    break;
-            }
+            thisAmount = amountFor(each);
             // add frequent renter points
             frequentRenterPoints++;
             // add bonus for a two days new launch rental
@@ -59,6 +45,26 @@ public class Customer {
         result += "You earned " + frequentRenterPoints
                 + " frequent renter points";
         return result;
+    }
+
+    private static double amountFor(Rental rental) {
+        double thisAmount = 0;
+        switch (rental.getFurniture().getPriceCode()) {
+            case Furniture.REGULAR:
+                thisAmount += 200;
+                if (rental.getDaysRented() > 2)
+                    thisAmount += (rental.getDaysRented() - 2) * 150;
+                break;
+            case Furniture.NEW_LAUNCH:
+                thisAmount += rental.getDaysRented() * 300;
+                break;
+            case Furniture.CHILDREN:
+                thisAmount += 150;
+                if (rental.getDaysRented() > 3)
+                    thisAmount += (rental.getDaysRented() - 3) * 150;
+                break;
+        }
+        return thisAmount;
     }
 }
 
