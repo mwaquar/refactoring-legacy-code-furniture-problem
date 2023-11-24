@@ -25,4 +25,31 @@ public class Furniture {
         return title;
     }
 
+    public double getPrice(int daysRented) {
+        double thisAmount = 0;
+        switch (getPriceCode()) {
+            case Furniture.REGULAR:
+                thisAmount += 200;
+                if (daysRented > 2)
+                    thisAmount += (daysRented - 2) * 150;
+                break;
+            case Furniture.NEW_LAUNCH:
+                thisAmount += daysRented * 300;
+                break;
+            case Furniture.CHILDREN:
+                thisAmount += 150;
+                if (daysRented > 3)
+                    thisAmount += (daysRented - 3) * 150;
+                break;
+        }
+        return thisAmount;
+    }
+
+    public int getFrequentRenterPoints(int daysRented) {
+        // add bonus for a two days new launch rental
+        if (getPriceCode() == Furniture.NEW_LAUNCH && daysRented > 1)
+            return 2;
+        return 1;
+    }
+
 }
